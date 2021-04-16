@@ -20,6 +20,7 @@ before_script:
 
 script:
   - . ./ci/build.sh
+  - . ./ci/list_artifacts.sh
 
 # note before_deploy will run before each deploy provider
 before_deploy:
@@ -28,7 +29,8 @@ before_deploy:
 deploy:
   provider: releases
   skip_cleanup: true
-  api_key: $GITHUB_TOKEN
+  cleanup: false
+  token: $GITHUB_TOKEN
   file: ci/release/*
   file_glob: true
   on:
